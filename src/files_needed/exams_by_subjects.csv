@@ -1,0 +1,35 @@
+Final Exam Y/N?,"If yes, duration",Subject,Cat#,Sect,Comp,Class#,Course Title,Units,Cap,Enrl,Mtg Start,Mtg End,M,T,W,R,Fri,Session,Course Instructor,Instructor Email
+Y,3 hr,MATH-SHU,121,1,LEC,17385,Calculus,4,60,59,8:15,9:30,Y,N,Y,N,N,SH,"Rolla,Leonardo",leorolla@nyu.edu
+Y,3 hr,MATH-SHU,263,1,LEC,17405,Partial Differential Equations,4,20,7,8:15,9:30,Y,Y,N,N,N,SH,"Huang,Tao",th79@nyu.edu
+Y,3 hr,PHYS-SHU,96,1,LEC,17571,Found of Physics IV Honors,3,12,1,8:15,9:30,Y,N,Y,N,N,SH,"Avishai,Yshai",yshai@bgu.ac.il
+Y,3 hr,PHYS-SHU,94,1,LAB,17604,Physics II Lab,2,16,11,13:15,17:15,N,N,Y,N,N,SH,"Wang,Xingyu",xw305@nyu.edu
+Y,2 hr,BPEP-SHU,238,1,LEC,22911,International Economics,4,40,35,11:30,12:45,N,Y,N,Y,N,SH,"Tang,Lixin",tang.lixin@mail.shufe.edu.cn
+Y,,BUSF-SHU,200B,1,LEC,17666,Topics in Business: Real Business Case Projects,4,20,10,11:15,12:30,N,Y,N,Y,N,SH,"Reinfeld,William",wreinfeld@aol.com
+Y,75 m,NEUR-SHU,100,1,LEC,22924,Math Tools for Life Sciences,4,40,11,11:15,12:30,N,Y,N,Y,N,SH,"Lim,Sukbin",sl1413@nyu.edu
+Y,"3 hr, prefer May 14, 2-5pm",PHYS-SHU,93,1,LEC,17436,Found of Physics II Honors,3,20,11,11:15,12:30,N,Y,N,Y,N,SH,"Chen,Hanghui",hc76@nyu.edu
+Y,3 hr,ECON-SHU,215,1,LEC,17564,Economic History,4,30,17,16:15,17:30,Y,N,Y,N,N,SH,"Gao,Pei",p.gao@nyu.edu
+Y,early part of the finals week,ECON-SHU,251,1,LEC,17424,Economics of Global Business,4,50,34,16:30,17:45,Y,N,Y,N,N,SH,"Zeidan,Rodrigo",rodrigo.zeidan@nyu.edu
+Y,3 hr,MATH-SHU,252,1,LEC,21973,Numerical Analysis,4,30,18,16:15,17:30,Y,N,Y,N,N,SH,"Mertz,Laurent",laurent.mertz@nyu.edu
+Y,3 hr,ECON-SHU,202,1,LEC,17419,Intermediate Macro Economics,4,40,31,9:45,11:00,Y,N,Y,N,N,SH,"Okui,Ryo",okui@nyu.edu
+Y,90 min,LIT-SHU,246,1,LEC,23275,Gender & Feminism: African Lit,4,20,3,9:45,11:00,Y,N,Y,N,N,SH,"Edwin,Shirin Esther",see2@nyu.edu
+Y,3 hr,MATH-SHU,250,1,LEC,22916,Mathematics of Finance,4,30,9,9:45,11:00,Y,N,Y,N,N,SH,"Fernandez,Roberto",rf87@nyu.edu
+Y,,BUSF-SHU,305,1,LEC,22031,Debt Instruments and Markets,4,30,6,14:45,17:15,Y,N,N,N,N,SH,"Geraci,Michele",michele.geraci@nyu.edu
+Y,3 hr,GCHN-SHU,200,2,LEC,22913,Topics in Global China Studies: Politics of History & Memory,4,24,8,14:45,16:00,Y,N,Y,N,N,SH,"Lee,Aleksandra Maria",leksa.lee@nyu.edu
+Y,3 hr,MATH-SHU,235,1,LEC,17504,Probability and Statistics,4,45,44,14:45,16:00,Y,N,Y,N,N,SH,"Kong,Xiaoli",xiaolikong@uky.edu
+Y,2.5 hr,MKTG-SHU,1,1,LEC,17478,Introduction to Marketing,4,40,40,13:15,16:00,Y,N,N,N,N,SH,"Chen,Yuxin/Huang,Jin",yc18@nyu.edu
+Y,,BIOL-SHU,250,1,LEC,17469,Organismal Systems,4,20,2,13:15,14:30,N,Y,N,Y,N,SH,"Yu,Danyang",danyang.yu@nyu.edu
+Y,"3 hr, early if possible",BUSF-SHU,5,1,LEC,22697,Princ. of Finance (Non-majors),4,30,5,13:45,15:00,N,Y,N,Y,N,SH,"Shapir,Offer Moshe",oms1@nyu.edu
+Y,,BUSF-SHU,321,1,LEC,17658,Equity Valuation,4,30,14,13:45,16:15,N,Y,N,N,N,SH,"Geraci,Michele",michele.geraci@nyu.edu
+Y,2 hr,CSCI-SHU,11,1,LEC,17479,Intro to Computer Programming,4,25,23,15:15,17:05,N,Y,N,N,N,SH,"Fu,Yingzhuo",yf28@nyu.edu
+Y,,BIOL-SHU,21,1,LEC,17462,Foundations of Biology I,3,32,31,9:45,11:00,N,Y,N,Y,N,SH,"Fang,Gang",gf54@nyu.edu
+Y,,BIOL-SHU,263,1,LEC,21962,Developmental Biology,4,20,4,9:45,11:00,N,Y,N,Y,N,SH,"Yu,Danyang",danyang.yu@nyu.edu
+Y,"3 hr, early if possible",BUSF-SHU,202,1,LEC,17551,Foundations of Finance,4,40,40,9:45,11:00,N,Y,N,Y,N,SH,"Shapir,Offer Moshe",oms1@nyu.edu
+Y,2 hr,CHEM-SHU,226,1,LEC,17426,Organic Chemistry II,3,12,7,9:45,11:00,N,Y,N,Y,N,SH,"Vellucci,Danielle",dv41@nyu.edu
+Y,3 hr,PHYS-SHU,106,1,LEC,17432,Mathematical Physics,4,12,3,8:15,11:00,N,Y,N,N,N,SH,"Moon,Pilkyung",pm112@nyu.edu
+Y,prefer Mon or as early as possible,MATH-SHU,123,1,LEC,17398,Multivariable Calculus,4,65,62,11:15,12:30,Y,N,Y,N,N,SH,"Groisman,Pablo",pg82@nyu.edu
+Y,3 hr,MATH-SHU,282,1,LEC,17506,Functions of a Complex Variabl,4,20,17,11:15,12:30,Y,N,Y,N,N,SH,"Liu,Yuning",yl67@nyu.edu
+Y,3 hr,MATH-SHU,328,1,LEC,17409,Honors Analysis I,4,30,19,11:15,12:30,Y,N,Y,N,N,SH,"Newman,Charles/Xu,Weijun",newman@cims.nyu.edu
+Y,3 hr,BUSF-SHU,142,1,LEC,17689,Info Tech in Business & Societ,4,30,24,15:15,17:45,N,N,N,Y,N,SH,"Junque De Fortuny,Enric",junquedefortuny@rsm.nl
+Y,3 hr,PHYS-SHU,251,1,LEC,22928,Electricity and Magnetism,4,10,4,,,N,N,N,N,N,SH,"Avishai,Yshai",yshai@bgu.ac.il
+Y,3 hr,PHYS-SHU,302,1,LEC,22929,Stat Mechanics & Thermodynamic,4,10,1,,,N,N,N,N,N,SH,"Avishai,Yshai",yshai@bgu.ac.il
+Y,,CHIN-SHU,0,0,LEC,0,All Chinese Language Sections,,,,,,,,,,,,All,Y,3 hr,CRWR-SHU,221,LEC

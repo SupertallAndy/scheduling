@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Course Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset = gb2312">
+    <style type="text/css" media="screen">
+
+
+        body {
+            padding: 20px;
+            font-size: 0.85em;
+            font-family: georgia, serif;
+            background-color: #333333;
+        }
+
+        .btn {
+            display: block;
+            position: relative;
+            background: #aaa;
+            padding: 15px;
+            float: left;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn * {
+            font-style: normal;
+            background-repeat: no-repeat;
+            display: block;
+            position: relative;
+        }
+
+        .btn i {
+            background-position: top left;
+            position: absolute;
+            margin-bottom: -5px;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 5px;
+        }
+
+        .btn span {
+            background-position: bottom left;
+            left: -5px;
+            padding: 0 0 5px 10px;
+            margin-bottom: -5px;
+        }
+
+        .btn span i {
+            background-position: bottom right;
+            margin-bottom: 0;
+            position: absolute;
+            left: 100%;
+            width: 10px;
+            height: 100%;
+            top: 0;
+        }
+
+        .btn span span {
+            background-position: top right;
+            position: absolute;
+            right: -10px;
+            margin-left: 10px;
+            top: -5px;
+            height: 0;
+        }
+
+        * html .btn span,
+        * html .btn i {
+            float: left;
+            width: auto;
+            background-image: none;
+            cursor: pointer;
+        }
+
+        .btn.grey {
+            background: #A9A9A9;
+            width: 85px;
+        }
+
+        .btn.red {
+            background: #984B4B;
+            width: 120px;
+        }
+        .btn.green {
+            background: #66CDAA;
+            width: 120px;
+        }
+
+        .btn:hover {
+            background-color: #66CDAA;
+        }
+
+        .btn:active {
+            background-color: #444;
+        }
+
+        p {
+            clear: both;
+            padding-bottom: 2em;
+        }
+
+        form {
+            margin-top: 2em;
+        }
+
+        form p .btn {
+            margin-right: 1em;
+        }
+
+        #gohome {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+
+<body>
+<script>
+    var course_assigns = '{{ js_msg }}';
+    var course_slots = course_assigns.split("|");
+</script>
+<h1 style="color: #F5F5F5; text-align:center">Course Schedule</h1>
+
+<div style=" z-index:9999;position:fixed; top:100px; left:30px;">
+    <p><a href="#div1" class="btn grey" >Monday</a></p>
+    <p><a href="#div2" class="btn grey" >Tuesday</a></p>
+    <p><a href="#div3" class="btn grey" >Wednesday</a></p>
+    <p><a href="#div4" class="btn grey" >Thursday</a></p>
+    <p><a href="#div5" class="btn grey" >Friday</a></p>
+    </br>
+    <form action="/downloadCourse" method="POST">
+        <button name="downloadBtn" class="btn red" type="submit">Export Result</button>
+    </form>
+</div>
+
+<div id = "div1" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Monday Classes</p>
+    <script>
+        var day_courses = course_slots.slice(0, 5);
+        var timeslots = ["8:15 - 10:15", "10:30 - 12:30", "13:15 - 15:15", "15:30 - 17:30", "17:45 - 19:45"];
+        window.addEventListener('load', function createTable(){
+            var table = document.createElement('table');
+            table.id = 'tab1';
+            var tbody = document.createElement('tbody');
+            for (var i = 0; i < 5; i++) {
+                var tr = document.createElement('tr');
+                var day_course;
+                day_course = day_courses[i].split(",");
+                var column_num = Math.max.apply(Math, day_courses.map(function(courses_in_slot){return courses_in_slot.split(",").length;}));
+                for (var j = 0; j < column_num + 1; j++) {
+                    var td = document.createElement('td');
+                    td.style.border = "1px solid #AAAAAA";
+                    td.style.background = "#DDDDDD";
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var displayCourse = day_course[j-1] != undefined ? day_course[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+            document.getElementById('div1').appendChild(table);
+        })
+    </script>
+</div>
+<br>
+<div id = "div2" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Tuesday Classes</p>
+    <script>
+        var day_courses2 = course_slots.slice(5, 10);
+        var timeslots = ["8:15 - 10:15", "10:30 - 12:30", "13:15 - 15:15", "15:30 - 17:30", "17:45 - 19:45"];
+        window.addEventListener('load', function createTable(){
+            var table2 = document.createElement('table');
+            table2.id = 'tab2';
+            var tbody = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_courses2.map(function(courses_in_slot){return courses_in_slot.split(",").length;}));
+            for (var i = 0; i < 5; i++) {
+                var tr = document.createElement('tr');
+                var day_course2;
+                day_course2 = day_courses2[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    var td = document.createElement('td');
+                    td.style.border = "1px solid #AAAAAA";
+                    td.style.background = "#DDDDDD";
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var displayCourse = day_course2[j-1] != undefined ? day_course2[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+                tbody.appendChild(tr);
+            }
+            table2.appendChild(tbody);
+            document.getElementById('div2').appendChild(table2);
+        })
+    </script>
+</div>
+<br>
+<div id = "div3" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Wednesday Classes</p>
+    <script>
+        var day_courses = course_slots.slice(0, 5);
+        var timeslots = ["8:15 - 10:15", "10:30 - 12:30", "13:15 - 15:15", "15:30 - 17:30", "17:45 - 19:45"];
+        window.addEventListener('load', function createTable(){
+            var table = document.createElement('table');
+            table.id = 'tab1';
+            var tbody = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_courses.map(function(courses_in_slot){return courses_in_slot.split(",").length;}));
+            for (var i = 0; i < 5; i++) {
+                var tr = document.createElement('tr');
+                var day_course;
+                day_course = day_courses[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    var td = document.createElement('td');
+                    td.style.border = "1px solid #AAAAAA";
+                    td.style.background = "#DDDDDD";
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var displayCourse = day_course[j-1] != undefined ? day_course[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+            document.getElementById('div3').appendChild(table);
+        })
+    </script>
+</div>
+<br>
+<div id = "div4" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Thursday Classes</p>
+    <script>
+        var day_courses2 = course_slots.slice(5, 10);
+        var timeslots = ["8:15 - 10:15", "10:30 - 12:30", "13:15 - 15:15", "15:30 - 17:30", "17:45 - 19:45"];
+        window.addEventListener('load', function createTable(){
+            var table2 = document.createElement('table');
+            table2.id = 'tab2';
+            var tbody = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_courses2.map(function(courses_in_slot){return courses_in_slot.split(",").length;}));
+            for (var i = 0; i < 5; i++) {
+                var tr = document.createElement('tr');
+                var day_course2;
+                day_course2 = day_courses2[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    var td = document.createElement('td');
+                    td.style.border = "1px solid #AAAAAA";
+                    td.style.background = "#DDDDDD";
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var displayCourse = day_course2[j-1] != undefined ? day_course2[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+                tbody.appendChild(tr);
+            }
+            table2.appendChild(tbody);
+            document.getElementById('div4').appendChild(table2);
+        })
+    </script>
+</div>
+<br>
+<div id = "div5" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Friday Recitations</p>
+    <script>
+        var day_courses3 = course_slots.slice(10, 15);
+        var timeslots = ["8:15 - 10:15", "10:30 - 12:30", "13:15 - 15:15", "15:30 - 17:30", "17:45 - 19:45"];
+        window.addEventListener('load', function createTable(){
+            var table3 = document.createElement('table');
+            table3.id = 'tab3';
+            var tbody = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_courses3.map(function(courses_in_slot){return courses_in_slot.split(",").length;}));
+            for (var i = 0; i < 5; i++) {
+                var tr = document.createElement('tr');
+                var day_course3;
+                day_course3 = day_courses3[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    var td = document.createElement('td');
+                    td.style.border = "1px solid #AAAAAA";
+                    td.style.background = "#DDDDDD";
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var displayCourse = day_course3[j-1] != undefined ? day_course3[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+                tbody.appendChild(tr);
+            }
+            table3.appendChild(tbody);
+            document.getElementById('div5').appendChild(table3);
+        })
+    </script>
+</div>
+<div id="gohome">
+    <form action="/" method="POST">
+        <button name="home" class="btn red">Go Home</button>
+    </form>
+</div>
+
+</body>
+</html>

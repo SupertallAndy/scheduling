@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Exam Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset = gb2312">
+    <style type="text/css" media="screen">
+
+
+        body {
+            padding: 20px;
+            font-size: 0.85em;
+            font-family: georgia, serif;
+            background-color: #333333;
+        }
+
+        .btn {
+            display: block;
+            position: relative;
+            background: #aaa;
+            padding: 15px;
+            float: left;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn * {
+            font-style: normal;
+            background-repeat: no-repeat;
+            display: block;
+            position: relative;
+        }
+
+        .btn i {
+            background-position: top left;
+            position: absolute;
+            margin-bottom: -5px;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 5px;
+        }
+
+        .btn span {
+            background-position: bottom left;
+            left: -5px;
+            padding: 0 0 5px 10px;
+            margin-bottom: -5px;
+        }
+
+        .btn span i {
+            background-position: bottom right;
+            margin-bottom: 0;
+            position: absolute;
+            left: 100%;
+            width: 10px;
+            height: 100%;
+            top: 0;
+        }
+
+        .btn span span {
+            background-position: top right;
+            position: absolute;
+            right: -10px;
+            margin-left: 10px;
+            top: -5px;
+            height: 0;
+        }
+
+        * html .btn span,
+        * html .btn i {
+            float: left;
+            width: auto;
+            background-image: none;
+            cursor: pointer;
+        }
+
+        .btn.grey {
+            background: #A9A9A9;
+            width: 85px;
+        }
+
+        .btn.red {
+            background: #984B4B;
+            width: 120px;
+        }
+
+        .btn.green {
+            background: #66CDAA;
+            width: 120px;
+        }
+
+        .btn:hover {
+            background-color: #66CDAA;
+        }
+
+        .btn:active {
+            background-color: #444;
+        }
+
+        p {
+            clear: both;
+            padding-bottom: 2em;
+        }
+
+        form {
+            margin-top: 2em;
+        }
+
+        form p .btn {
+            margin-right: 1em;
+        }
+
+        #popupcontent {
+            position: fixed;
+            visibility: hidden;
+            overflow: hidden;
+            border: 1px solid #CCC;
+            background-color: #F9F9F9;
+            border: 1px solid #333;
+            padding: 5px;
+            z-index: 9999;
+        }
+
+        #gohome {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+
+<body>
+<script>
+    var exam_assigns = '{{ js_msg }}';
+    var examTitleList = {{ examTitleList|safe }};
+    var examCodeList = {{ examCodeList|safe }};
+    var course_slots = exam_assigns.split("|");
+    examTitleList.sort();
+</script>
+<h1 style="color: #F5F5F5; text-align:center">Exam Schedule</h1>
+
+<div id="div1" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Monday Exams</p>
+    <script>
+        var day_exams = course_slots.slice(0, 3);
+        var timeslots = ["09:00 - 12:00", "14:00 - 17:00", "18:00 - 21:00"];
+        window.addEventListener('load', function createTable() {
+            var table = document.createElement('table');
+            table.id = 'tab1';
+            var tbody = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_exams.map(function(exams_in_slot){return exams_in_slot.split(",").length;}));
+            for (var i = 0; i < 3; i++) {
+                var tr = document.createElement('tr');
+                var day_exam;
+                day_exam = day_exams[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var td = document.createElement('td');
+                        td.style.border = "1px solid #AAAAAA";
+                        td.style.background = "#DDDDDD";
+                        var displayCourse = day_exam[j-1] != undefined ? day_exam[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+
+               tbody.appendChild(tr);
+             }
+            table.appendChild(tbody);
+            document.getElementById('div1').appendChild(table);
+        })
+    </script>
+</div>
+
+<div id="div2" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Tuesday Exams</p>
+    <script>
+        var day_exams2 = course_slots.slice(3, 6);
+        var timeslots = ["09:00 - 12:00", "14:00 - 17:00", "18:00 - 21:00"];
+        window.addEventListener('load', function createTable() {
+            var table2 = document.createElement('table');
+            table2.id = 'tab2';
+            var tbody2 = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_exams.map(function(exams_in_slot){return exams_in_slot.split(",").length;}));
+            for (var i = 0; i < 3; i++) {
+                var tr = document.createElement('tr');
+                var day_exam;
+                day_exam = day_exams2[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var td = document.createElement('td');
+                        td.style.border = "1px solid #AAAAAA";
+                        td.style.background = "#DDDDDD";
+                        var displayCourse = day_exam[j-1] != undefined ? day_exam[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+
+                tbody2.appendChild(tr);
+            }
+            table2.appendChild(tbody2);
+            document.getElementById('div2').appendChild(table2);
+        })
+    </script>
+</div>
+
+<div id="div3" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Wednesday Exams</p>
+    <script>
+        var day_exams3 = course_slots.slice(6, 9);
+        var timeslots = ["09:00 - 12:00", "14:00 - 17:00", "18:00 - 21:00"];
+        window.addEventListener('load', function createTable() {
+            var table3 = document.createElement('table');
+            table3.id = 'tab3';
+            var tbody3 = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_exams.map(function(exams_in_slot){return exams_in_slot.split(",").length;}));
+            for (var i = 0; i < 3; i++) {
+                var tr = document.createElement('tr');
+                var day_exam;
+                day_exam = day_exams3[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var td = document.createElement('td');
+                        td.style.border = "1px solid #AAAAAA";
+                        td.style.background = "#DDDDDD";
+                        var displayCourse = day_exam[j-1] != undefined ? day_exam[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+
+                tbody3.appendChild(tr);
+            }
+            table3.appendChild(tbody3);
+            document.getElementById('div3').appendChild(table3);
+        })
+    </script>
+</div>
+
+<div id="div4" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Thursday Exams</p>
+    <script>
+        var day_exams4 = course_slots.slice(9, 12);
+        var timeslots = ["09:00 - 12:00", "14:00 - 17:00", "18:00 - 21:00"];
+        window.addEventListener('load', function createTable() {
+            var table4 = document.createElement('table');
+            table4.id = 'tab4';
+            var tbody4 = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_exams.map(function(exams_in_slot){return exams_in_slot.split(",").length;}));
+            for (var i = 0; i < 3; i++) {
+                var tr = document.createElement('tr');
+                var day_exam;
+                day_exam = day_exams4[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var td = document.createElement('td');
+                        td.style.border = "1px solid #AAAAAA";
+                        td.style.background = "#DDDDDD";
+                        var displayCourse = day_exam[j-1] != undefined ? day_exam[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+
+                tbody4.appendChild(tr);
+            }
+            table4.appendChild(tbody4);
+            document.getElementById('div4').appendChild(table4);
+        })
+    </script>
+</div>
+
+<div id="div5" style="position:relative; top:0; left:200px; width: 80%">
+    <p style="color: #F5F5F5; text-align:left">Friday Exams</p>
+    <script>
+        var day_exams5;
+            day_exams5 = course_slots.slice(12, 15);
+        var timeslots = ["09:00 - 12:00", "14:00 - 17:00", "18:00 - 21:00"];
+        window.addEventListener('load', function createTable() {
+            var table5 = document.createElement('table');
+            table5.id = 'tab5';
+            var tbody5 = document.createElement('tbody');
+            var column_num = Math.max.apply(Math, day_exams.map(function(exams_in_slot){return exams_in_slot.split(",").length;}));
+            for (var i = 0; i < 3; i++) {
+                var tr = document.createElement('tr');
+                var day_exam;
+                day_exam = day_exams5[i].split(",");
+                for (var j = 0; j < column_num + 1; j++) {
+                    if (j == 0) {
+                        var th = document.createElement('th');
+                        th.style.border = "1px solid #AAAAAA";
+                        th.style.background = "#AAAAAA";
+                        th.appendChild(document.createTextNode(timeslots[i]));
+                        tr.appendChild(th);
+                    }
+                    else {
+                        var td = document.createElement('td');
+                        td.style.border = "1px solid #AAAAAA";
+                        td.style.background = "#DDDDDD";
+                        var displayCourse = day_exam[j-1] != undefined ? day_exam[j-1] : "";
+                        var inner = document.createTextNode(displayCourse);
+                        td.appendChild(inner);
+                        tr.appendChild(td);
+                    }
+                }
+
+                tbody5.appendChild(tr);
+            }
+            table5.appendChild(tbody5);
+            document.getElementById('div5').appendChild(table5);
+        })
+
+    </script>
+</div>
+
+<script>
+    var baseText = null;
+
+    function showPopup(w, h) {
+        var popUp = document.getElementById("popupcontent");
+        popUp.style.top = "200px";
+        popUp.style.left = "200px";
+        popUp.style.width = w + "px";
+        popUp.style.height = h + "px";
+        if (baseText == null) baseText = popUp.innerHTML;
+        popUp.innerHTML = baseText + "<div id=\"statusbar\"><button onclick=\"hidePopup(); \">Close window<button></div>";
+        var sbar = document.getElementById("statusbar");
+        sbar.style.marginTop = (parseInt(h) - 40) + "px";
+        popUp.style.visibility = "visible";
+    }
+
+    function hidePopup() {
+        var popUp = document.getElementById("popupcontent");
+        popUp.style.visibility = "hidden";
+    }
+</script>
+
+<div id="popupcontent" style="background: #A9A9A9">
+
+    <form id="changeExam" method=post action = "/regenerate"></form>
+    <script>
+        var p1 = document.createElement("P1");
+        var t1 = document.createTextNode("Select the course you want to change time:");
+        p1.appendChild(t1);
+        p1.style.fontFamily = "georgia, serif";
+        p1.style.color = " #F5F5F5";
+        p1.style.fontSize = 1;
+        var form_ = document.getElementById("changeExam");
+        form_.appendChild(p1);
+        lb = document.createElement("br");
+        form_.appendChild(lb);
+        form_.appendChild(lb);
+    </script>
+    <script>
+        // var all_exams = ["Introduction to Computer Programming", "Foundations of Biology I", "Numerical Analysis", "Information Technology in Business & Society", "Equity Valuation", "Mathematical Physics", "Mathematics of Finance", "Developmental Biology", "Introduction to Computer Programming", "Foundations of Biology I", "Information Technology in Business & Society", "Numerical Analysis", "Foundations of Finance", "Ordinary Differential Equations", "Introduction to Conversational Chinese - 4 credits", "Introduction to Contemporary China II", "Chinese Business and Finance -- A Bilingual Introduction", "Readings in Chinese Culture II", "Classical Chinese II", "Foundations of Finance", "Math Tools for Life Sciences", "Ordinary Differential Equations", "Equity Valuation", "Networks and Dynamics", "Introduction to Conversational Chinese", "Elementary Chinese II", "Intermediate Chinese II", "Physics II Lab", "Honors Theory of Probability", "Networks and Dynamics", "Intermediate Chinese I for Advanced Beginners", "Elementary Chinese I for Advanced Beginners", "Introduction to Conversational Chinese", "Elementary Chinese II", "Physics II Lab", "Intermediate Chinese II", "Elementary Chinese II FoS 2Honors Theory of Probability", "Statistical Mechanics and Thermodynamics", "Mathematics of Finance", "Foundations of Physics IV Honors", "Introduction to Gender and Feminism in African Literature", "Intermediate Chinese I - Accelerated", "Functional Analysis", "Elementary Chinese I", "Advanced Chinese I", "Introduction to Gender and Feminism in African Literature", "Functions of a Complex Variable", "Elementary Chinese I", "Advanced Chinese I", "Advanced Chinese II", "Electricity and Magnetism", "Organismal Systems", "Debt Instruments and Markets", "Developmental Biology", "Introduction to Conversational Chinese - 4 credits", "Honors Linear Algebra II", "Partial Differential Equations", "Mathematical Physics", "Principles of Finance for Non-majors", "Elementary Chinese I for Advanced Beginners", "Differential Geometry", "Intermediate Chinese I for Advanced Beginners", "Introduction to Contemporary China II", "Intermediate Chinese II - Accelerated", "Chinese Business and Finance -- A Bilingual Introduction", "Readings in Chinese Culture II", "Classical Chinese II", "Multivariable Calculus", "Calculus", "International Economics", "Honors Analysis I", "Partial Differential Equations", "Advanced Chinese II", "Math Tools for Life Sciences", "Differential Geometry", "International Economics", "Multivariable Calculus", "Calculus", "Honors Analysis I", "Linear Algebra", "Intermediate Macro Economics", "Intermediate Chinese I", "Elementary Chinese I - FoS 2", "Intermediate Chinese I - Accelerated", "Statistical Mechanics and Thermodynamics", "Foundations of Physics IV Honors", "Functional Analysis", "Linear Algebra", "Intermediate Macro Economics", "Intermediate Chinese I", "Elementary Chinese I - FoS 2", "Introduction to Marketing", "Probability and Statistics", "Honors Linear Algebra II", "Organic Chemistry II", "Topics in Business", "Principles of Finance for Non-majors", "Intermediate Chinese II - Accelerated", "Elementary Chinese II FoS 2", "Introduction to Marketing", "Probability and Statistics", "Organic Chemistry II", "Topics in Business", "Economics of Global Business", "Functions of a Complex Variable", "Foundations of Physics II Honors", "Topics in Global China Studies", "Economic History", "Electricity and Magnetism", "Organismal Systems", "Debt Instruments and Markets", "Economics of Global Business", "Foundations of Physics II Honors", "Topics in Global China Studies", "Economic History"];
+        var selectList = document.createElement("select");
+        selectList.name = "selected_exam";
+        selectList.form = "changeExam";
+        popupcontent.appendChild(selectList);
+        for (var i = 0; i < examTitleList.length; i++) {
+            var option = document.createElement("option");
+            // option.value = all_exams[i];
+            // option.text = all_exams[i];
+            option.value = examTitleList[i];
+            option.text = examTitleList[i];
+            selectList.appendChild(option);
+        }
+        var form_ = document.getElementById("changeExam");
+        form_.appendChild(selectList);
+        lb = document.createElement("br");
+        form_.appendChild(lb);
+        form_.appendChild(lb);
+    </script>
+    <script>
+        var p = document.createElement("P2");
+        var t = document.createTextNode("Select the time slot you want to change: ");
+        p.appendChild(t);
+        p.style.fontFamily = "georgia, serif";
+        p.style.color = " #F5F5F5";
+        p.style.fontSize = 1;
+        var form_ = document.getElementById("changeExam");
+        form_.appendChild(p);
+        lb = document.createElement("br");
+        form_.appendChild(lb);
+        form_.appendChild(lb);
+    </script>
+        <script>
+            var time_slots = ["Mon 9:00 - 12:00", "Mon 14:00 - 17:00", "Mon 18:00 - 21:00", "Tue 9:00 - 12:00", "Tue 14:00 - 17:00", "Tue 18:00 - 21:00", "Wed 9:00 - 12:00", "Wed 14:00 - 17:00", "Wed 18:00 - 21:00", "Thr 9:00 - 12:00", "Thr 14:00 - 17:00", "Thr 18:00 - 21:00", "Fri 9:00 - 12:00", "Fri 14:00 - 17:00", "Fri 18:00 - 21:00"];
+            var selectList2 = document.createElement("select");
+            selectList2.name = "selected_time";
+            selectList2.id = "sel2";
+            selectList2.form = "changeExam";
+            popupcontent.appendChild(selectList2);
+            for (var i = 0; i < time_slots.length; i++) {
+                var option = document.createElement("option");
+                option.value = time_slots[i];
+                option.text = time_slots[i];
+                selectList2.appendChild(option);
+            }
+            var form_ = document.getElementById("changeExam");
+            form_.appendChild(selectList2);
+        </script>
+    <script>
+    </script>
+    <br>
+    <br>
+    <br>
+    <script>
+        function submitForm() {
+            var form1 = document.getElementById('changeExam');
+            form1.action = "/regenerate";
+            form1.submit();
+        }
+    </script>
+    <button name="sub" class="btn green" onclick="submitForm()">Submit the change</button>
+    <button style="float: left" name="close" class="btn red" onclick="hidePopup()">Close the window</button>
+</div>
+
+<div style="z-index:9999;position:fixed; top:100px; left:30px;">
+    <p><a href="#div1" class="btn grey">Monday</a></p>
+    <p><a href="#div2" class="btn grey">Tuesday</a></p>
+    <p><a href="#div3" class="btn grey">Wednesday</a></p>
+    <p><a href="#div4" class="btn grey">Thursday</a></p>
+    <p><a href="#div5" class="btn grey">Friday</a></p>
+    <br>
+    <form action="/download" method="POST">
+        <button name="downloadBtn" class="btn red">Export Result</button>
+    </form>
+    <button name="post" class="btn red" onclick="showPopup(400, 300);">Change Exam Time</button>
+    <form name="addDeleteForm" method="post" action="#">
+        <fieldset>
+            <legend style="color: #F5F5F5">Add an exam</legend>
+            <div><input id="course_code" name="examCourse" type="text" placeholder="course code"/></div>
+            <!-- <p><input type="Submit" id="submit_btn" value="Submit" class="btn"/></p> -->
+            <button name="addExamBtn" class="btn" onclick="addExam()">Add</button>
+            <button name="deleteExamBtn" class="btn" onclick="deleteExam()">Delete</button>
+        </fieldset>
+    </form>
+    <script>
+        function addExam() {
+            var examToAdd = document.getElementById("course_code").value;
+            // var all_exams = ["Introduction to Computer Programming", "Foundations of Biology I", "Numerical Analysis", "Information Technology in Business & Society", "Equity Valuation", "Mathematical Physics", "Mathematics of Finance", "Developmental Biology", "Introduction to Computer Programming", "Foundations of Biology I", "Information Technology in Business & Society", "Numerical Analysis", "Foundations of Finance", "Ordinary Differential Equations", "Introduction to Conversational Chinese - 4 credits", "Introduction to Contemporary China II", "Chinese Business and Finance -- A Bilingual Introduction", "Readings in Chinese Culture II", "Classical Chinese II", "Foundations of Finance", "Math Tools for Life Sciences", "Ordinary Differential Equations", "Equity Valuation", "Networks and Dynamics", "Introduction to Conversational Chinese", "Elementary Chinese II", "Intermediate Chinese II", "Physics II Lab", "Honors Theory of Probability", "Networks and Dynamics", "Intermediate Chinese I for Advanced Beginners", "Elementary Chinese I for Advanced Beginners", "Introduction to Conversational Chinese", "Elementary Chinese II", "Physics II Lab", "Intermediate Chinese II", "Elementary Chinese II FoS 2Honors Theory of Probability", "Statistical Mechanics and Thermodynamics", "Mathematics of Finance", "Foundations of Physics IV Honors", "Introduction to Gender and Feminism in African Literature", "Intermediate Chinese I - Accelerated", "Functional Analysis", "Elementary Chinese I", "Advanced Chinese I", "Introduction to Gender and Feminism in African Literature", "Functions of a Complex Variable", "Elementary Chinese I", "Advanced Chinese I", "Advanced Chinese II", "Electricity and Magnetism", "Organismal Systems", "Debt Instruments and Markets", "Developmental Biology", "Introduction to Conversational Chinese - 4 credits", "Honors Linear Algebra II", "Partial Differential Equations", "Mathematical Physics", "Principles of Finance for Non-majors", "Elementary Chinese I for Advanced Beginners", "Differential Geometry", "Intermediate Chinese I for Advanced Beginners", "Introduction to Contemporary China II", "Intermediate Chinese II - Accelerated", "Chinese Business and Finance -- A Bilingual Introduction", "Readings in Chinese Culture II", "Classical Chinese II", "Multivariable Calculus", "Calculus", "International Economics", "Honors Analysis I", "Partial Differential Equations", "Advanced Chinese II", "Math Tools for Life Sciences", "Differential Geometry", "International Economics", "Multivariable Calculus", "Calculus", "Honors Analysis I", "Linear Algebra", "Intermediate Macro Economics", "Intermediate Chinese I", "Elementary Chinese I - FoS 2", "Intermediate Chinese I - Accelerated", "Statistical Mechanics and Thermodynamics", "Foundations of Physics IV Honors", "Functional Analysis", "Linear Algebra", "Intermediate Macro Economics", "Intermediate Chinese I", "Elementary Chinese I - FoS 2", "Introduction to Marketing", "Probability and Statistics", "Honors Linear Algebra II", "Organic Chemistry II", "Topics in Business", "Principles of Finance for Non-majors", "Intermediate Chinese II - Accelerated", "Elementary Chinese II FoS 2", "Introduction to Marketing", "Probability and Statistics", "Organic Chemistry II", "Topics in Business", "Economics of Global Business", "Functions of a Complex Variable", "Foundations of Physics II Honors", "Topics in Global China Studies", "Economic History", "Electricity and Magnetism", "Organismal Systems", "Debt Instruments and Markets", "Economics of Global Business", "Foundations of Physics II Honors", "Topics in Global China Studies", "Economic History"];
+            if(examCodeList.indexOf(examToAdd) == -1) {
+//                console.log(examToAdd);
+                var addDeleteForm = document.getElementsByName("addDeleteForm")[0];
+                addDeleteForm.action = "/addExam";
+                addDeleteForm.submit();
+            } else {
+                alert("Exam already scheduled!")
+            }
+        }
+
+        function deleteExam() {
+            var examToDelete = document.getElementById("course_code").value;
+            // var all_exams = ["CRWR-SHU 221", "Introduction to Computer Programming", "Foundations of Biology I", "Numerical Analysis", "Information Technology in Business & Society", "Equity Valuation", "Mathematical Physics", "Mathematics of Finance", "Developmental Biology", "Introduction to Computer Programming", "Foundations of Biology I", "Information Technology in Business & Society", "Numerical Analysis", "Foundations of Finance", "Ordinary Differential Equations", "Introduction to Conversational Chinese - 4 credits", "Introduction to Contemporary China II", "Chinese Business and Finance -- A Bilingual Introduction", "Readings in Chinese Culture II", "Classical Chinese II", "Foundations of Finance", "Math Tools for Life Sciences", "Ordinary Differential Equations", "Equity Valuation", "Networks and Dynamics", "Introduction to Conversational Chinese", "Elementary Chinese II", "Intermediate Chinese II", "Physics II Lab", "Honors Theory of Probability", "Networks and Dynamics", "Intermediate Chinese I for Advanced Beginners", "Elementary Chinese I for Advanced Beginners", "Introduction to Conversational Chinese", "Elementary Chinese II", "Physics II Lab", "Intermediate Chinese II", "Elementary Chinese II FoS 2Honors Theory of Probability", "Statistical Mechanics and Thermodynamics", "Mathematics of Finance", "Foundations of Physics IV Honors", "Introduction to Gender and Feminism in African Literature", "Intermediate Chinese I - Accelerated", "Functional Analysis", "Elementary Chinese I", "Advanced Chinese I", "Introduction to Gender and Feminism in African Literature", "Functions of a Complex Variable", "Elementary Chinese I", "Advanced Chinese I", "Advanced Chinese II", "Electricity and Magnetism", "Organismal Systems", "Debt Instruments and Markets", "Developmental Biology", "Introduction to Conversational Chinese - 4 credits", "Honors Linear Algebra II", "Partial Differential Equations", "Mathematical Physics", "Principles of Finance for Non-majors", "Elementary Chinese I for Advanced Beginners", "Differential Geometry", "Intermediate Chinese I for Advanced Beginners", "Introduction to Contemporary China II", "Intermediate Chinese II - Accelerated", "Chinese Business and Finance -- A Bilingual Introduction", "Readings in Chinese Culture II", "Classical Chinese II", "Multivariable Calculus", "Calculus", "International Economics", "Honors Analysis I", "Partial Differential Equations", "Advanced Chinese II", "Math Tools for Life Sciences", "Differential Geometry", "International Economics", "Multivariable Calculus", "Calculus", "Honors Analysis I", "Linear Algebra", "Intermediate Macro Economics", "Intermediate Chinese I", "Elementary Chinese I - FoS 2", "Intermediate Chinese I - Accelerated", "Statistical Mechanics and Thermodynamics", "Foundations of Physics IV Honors", "Functional Analysis", "Linear Algebra", "Intermediate Macro Economics", "Intermediate Chinese I", "Elementary Chinese I - FoS 2", "Introduction to Marketing", "Probability and Statistics", "Honors Linear Algebra II", "Organic Chemistry II", "Topics in Business", "Principles of Finance for Non-majors", "Intermediate Chinese II - Accelerated", "Elementary Chinese II FoS 2", "Introduction to Marketing", "Probability and Statistics", "Organic Chemistry II", "Topics in Business", "Economics of Global Business", "Functions of a Complex Variable", "Foundations of Physics II Honors", "Topics in Global China Studies", "Economic History", "Electricity and Magnetism", "Organismal Systems", "Debt Instruments and Markets", "Economics of Global Business", "Foundations of Physics II Honors", "Topics in Global China Studies", "Economic History"];
+            if(examCodeList.indexOf(examToDelete) != -1) {
+                var addDeleteForm = document.getElementsByName("addDeleteForm")[0];
+                addDeleteForm.action = "/deleteExam";
+                addDeleteForm.submit();
+            } else {
+                alert("Exam already deleted!")
+            };
+        }
+    </script>
+</div>
+
+<div id="gohome">
+    <form action="/" method="POST">
+        <button name="home" class="btn red">Go Home</button>
+    </form>
+</div>
+
+</body>
+</html>

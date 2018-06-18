@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SchedulingSystem</title>
+    <meta http-equiv="Content-Type" content="text/html; charset = gb2312">
+    <style type="text/css" media="screen">
+        body { padding: 20px; font-size: 0.85em; font-family: georgia, serif;
+            background-image:url("../static/2.jpg"); background-repeat:no-repeat; background-size: contain;}
+        p { clear: both; padding-bottom: 2em; }
+        form { margin-top: 2em; }
+        .btn {
+            display: block;
+            position: relative;
+            background: #57068c;
+            padding: 15px;
+            float: left;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1 style = "color: #57068c; text-align:center; font-size: 7em; background-color: #ffffff; background-color: rgba(255, 255, 255, 0.5)">School Scheduling System</h1>
+<h2 style = "color: #808080; text-align:left; font-size: 1.5em; font-weight: bold">Instruction:</h2>
+<h3 style = "color: #808080; text-align:left; font-size: 1em"> To generate <a style = "color:#000000; font-weight: bold">Exam Schedule</a>, upload two files separately: <br> 1. One file contains the information about the courses that require final exams during the final week.<br>2. One file contains all students' enrollment information.</h3>
+<h4 style = "color: #808080; text-align:left; font-size: 1em"> To generate <a style = "color:#000000; font-weight: bold">Course Schedule</a>, upload one file contains the course information and instructors' information.</h4>
+<h5 style="color:  #a4a597;">{{msg}}</h5>
+<form action="/" method=post enctype=multipart/form-data>
+    Exam File 1:<input type=file name=ExamFile1>
+    Exam File 2:<input type=file name=ExamFile2>
+    <input type=submit value=Upload>
+</form>
+
+<form action="/" method=post enctype=multipart/form-data>
+    Course File:<input type=file name=CourseFile>
+    <input type=submit value=Upload>
+</form>
+
+<form action="/examSchedule" method="POST">
+    <button name="examScheduleBtn" class="btn" type="submit" >Create Exam Schedule</button>
+</form>
+<form action="/courseSchedule" method="POST">
+    <button name="courseScheduleBtn" class="btn" type="submit">Create Course Schedule</button>
+</form>
+
+
+</body>
+</html>
